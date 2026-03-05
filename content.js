@@ -27,9 +27,7 @@ function attachTooltipToSpan(valueSpan, eventCode) {
         tooltip.classList.add("splunk-tooltip");
 
         if (eventInfo) {
-
             const tactics = eventInfo.attack_tactics.join(", ");
-
             tooltip.innerHTML = `
                 <div class="tooltip-title">
                     ${eventCode} - ${eventInfo.title}
@@ -65,13 +63,10 @@ function attachTooltipToSpan(valueSpan, eventCode) {
                     ${eventInfo.recommendation}
                 </div>
             `;
-
         } else {
             tooltip.textContent = "No intelligence available for this EventCode.";
         }
-
         document.body.appendChild(tooltip);
-
         const rect = valueSpan.getBoundingClientRect();
         tooltip.style.top = rect.bottom + window.scrollY + 8 + "px";
         tooltip.style.left = rect.left + window.scrollX + "px";
@@ -85,25 +80,16 @@ function attachTooltipToSpan(valueSpan, eventCode) {
     });
 }
 function processEventCodes() {
-
     const containers = document.querySelectorAll("span.t");
-
     containers.forEach(container => {
-
-        const children = container.querySelectorAll(":scope > span");
-
+        const children = container.querySelectorAll(":scope > span")
         if (children.length === 2) {
-
             const keySpan = children[0];
             const valueSpan = children[1];
-
             if (keySpan.textContent.trim() === "EventCode") {
-
                 if (!valueSpan.dataset.tooltipAttached) {
-
                     const eventCode = valueSpan.textContent.trim();
                     attachTooltipToSpan(valueSpan, eventCode);
-
                     valueSpan.dataset.tooltipAttached = "true";
                 }
             }
@@ -111,14 +97,11 @@ function processEventCodes() {
     });
 }
 async function init() {
-
     await loadEventsData();
     processEventCodes();
-
     const observer = new MutationObserver(() => {
         processEventCodes();
     });
-
     observer.observe(document.body, {
         childList: true,
         subtree: true
