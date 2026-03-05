@@ -1,0 +1,321 @@
+{
+  "1102": {
+    "title": "Audit Log Cleared",
+    "base_risk": "High",
+    "severity_score": 95,
+    "common_abuse": "Attackers clear logs to remove forensic evidence after compromise.",
+    "attack_tactics": ["Defense Evasion"],
+    "soc_notes": "Highly suspicious in most environments.",
+    "recommendation": "Investigate the user and correlate with previous suspicious actions."
+  },
+
+  "4624": {
+    "title": "Successful Logon",
+    "base_risk": "Low",
+    "severity_score": 20,
+    "common_abuse": "Often used during lateral movement via SMB, WinRM or RDP.",
+    "attack_tactics": ["Initial Access","Lateral Movement","Persistence"],
+    "soc_notes": "Check LogonType for suspicious access patterns.",
+    "recommendation": "Investigate unusual login times, locations, or service accounts."
+  },
+
+  "4625": {
+    "title": "Failed Logon",
+    "base_risk": "Medium",
+    "severity_score": 55,
+    "common_abuse": "Password spraying or brute force attempts.",
+    "attack_tactics": ["Credential Access"],
+    "soc_notes": "High frequency events may indicate attack attempts.",
+    "recommendation": "Review source IP and number of attempts."
+  },
+
+  "4634": {
+    "title": "Logoff",
+    "base_risk": "Low",
+    "severity_score": 10,
+    "common_abuse": "Normal session termination.",
+    "attack_tactics": ["Discovery"],
+    "soc_notes": "Useful for session timeline reconstruction.",
+    "recommendation": "Correlate with previous login events."
+  },
+
+  "4648": {
+    "title": "Explicit Credential Logon",
+    "base_risk": "Medium",
+    "severity_score": 65,
+    "common_abuse": "Used with runas or credential impersonation.",
+    "attack_tactics": ["Credential Access","Lateral Movement"],
+    "soc_notes": "Common in pass-the-hash scenarios.",
+    "recommendation": "Investigate the process requesting credentials."
+  },
+
+  "4672": {
+    "title": "Special Privileges Assigned",
+    "base_risk": "Medium",
+    "severity_score": 70,
+    "common_abuse": "Admin privileges obtained after login.",
+    "attack_tactics": ["Privilege Escalation"],
+    "soc_notes": "Expected for admins but suspicious otherwise.",
+    "recommendation": "Verify privileged user activity."
+  },
+
+  "4688": {
+    "title": "Process Creation",
+    "base_risk": "Medium",
+    "severity_score": 70,
+    "common_abuse": "Malware execution or living-off-the-land binaries.",
+    "attack_tactics": ["Execution","Persistence","Privilege Escalation"],
+    "soc_notes": "High value event for threat hunting.",
+    "recommendation": "Inspect command line arguments and parent process."
+  },
+
+  "4689": {
+    "title": "Process Terminated",
+    "base_risk": "Low",
+    "severity_score": 25,
+    "common_abuse": "Useful for correlating suspicious process activity.",
+    "attack_tactics": ["Discovery"],
+    "soc_notes": "Provides lifecycle context for processes.",
+    "recommendation": "Correlate with Event 4688."
+  },
+
+  "4697": {
+    "title": "Service Installed",
+    "base_risk": "High",
+    "severity_score": 85,
+    "common_abuse": "Malicious services used for persistence.",
+    "attack_tactics": ["Persistence","Privilege Escalation"],
+    "soc_notes": "Rare in normal operations.",
+    "recommendation": "Inspect service binary path."
+  },
+
+  "4698": {
+    "title": "Scheduled Task Created",
+    "base_risk": "High",
+    "severity_score": 80,
+    "common_abuse": "Persistence through scheduled tasks.",
+    "attack_tactics": ["Persistence"],
+    "soc_notes": "Common attacker technique.",
+    "recommendation": "Review scheduled command execution."
+  },
+
+  "4699": {
+    "title": "Scheduled Task Deleted",
+    "base_risk": "Medium",
+    "severity_score": 60,
+    "common_abuse": "Attackers remove traces of persistence.",
+    "attack_tactics": ["Defense Evasion"],
+    "soc_notes": "Should be correlated with task creation.",
+    "recommendation": "Check task execution history."
+  },
+
+  "4702": {
+    "title": "Scheduled Task Updated",
+    "base_risk": "High",
+    "severity_score": 75,
+    "common_abuse": "Task modification for persistence.",
+    "attack_tactics": ["Persistence"],
+    "soc_notes": "May indicate malicious task modification.",
+    "recommendation": "Inspect updated task command."
+  },
+
+  "4719": {
+    "title": "System Audit Policy Changed",
+    "base_risk": "High",
+    "severity_score": 85,
+    "common_abuse": "Attackers disable logging.",
+    "attack_tactics": ["Defense Evasion"],
+    "soc_notes": "Very suspicious in most cases.",
+    "recommendation": "Investigate audit policy modifications."
+  },
+
+  "4720": {
+    "title": "User Account Created",
+    "base_risk": "High",
+    "severity_score": 80,
+    "common_abuse": "Backdoor accounts created by attackers.",
+    "attack_tactics": ["Persistence"],
+    "soc_notes": "Unusual outside admin operations.",
+    "recommendation": "Validate legitimacy of account creation."
+  },
+
+  "4722": {
+    "title": "User Account Enabled",
+    "base_risk": "Medium",
+    "severity_score": 60,
+    "common_abuse": "Reactivating dormant accounts.",
+    "attack_tactics": ["Persistence"],
+    "soc_notes": "May indicate attacker reusing accounts.",
+    "recommendation": "Investigate why account was enabled."
+  },
+
+  "4723": {
+    "title": "Password Change Attempt",
+    "base_risk": "Medium",
+    "severity_score": 55,
+    "common_abuse": "Credential takeover attempts.",
+    "attack_tactics": ["Credential Access"],
+    "soc_notes": "Context dependent.",
+    "recommendation": "Verify the requesting user."
+  },
+
+  "4724": {
+    "title": "Password Reset Attempt",
+    "base_risk": "High",
+    "severity_score": 75,
+    "common_abuse": "Admin abuse resetting user passwords.",
+    "attack_tactics": ["Privilege Escalation"],
+    "soc_notes": "Often seen in account takeover scenarios.",
+    "recommendation": "Verify reset request."
+  },
+
+  "4725": {
+    "title": "User Account Disabled",
+    "base_risk": "Medium",
+    "severity_score": 50,
+    "common_abuse": "Attackers disable accounts to disrupt services.",
+    "attack_tactics": ["Impact"],
+    "soc_notes": "Unexpected in many environments.",
+    "recommendation": "Confirm administrative action."
+  },
+
+  "4726": {
+    "title": "User Account Deleted",
+    "base_risk": "High",
+    "severity_score": 80,
+    "common_abuse": "Removing compromised accounts.",
+    "attack_tactics": ["Defense Evasion"],
+    "soc_notes": "Often follows account abuse.",
+    "recommendation": "Investigate account history."
+  },
+
+  "4732": {
+    "title": "User Added to Local Admin Group",
+    "base_risk": "High",
+    "severity_score": 90,
+    "common_abuse": "Privilege escalation via admin groups.",
+    "attack_tactics": ["Privilege Escalation"],
+    "soc_notes": "Critical event if added to Administrators.",
+    "recommendation": "Investigate who added the user."
+  },
+
+  "4735": {
+    "title": "Security Group Modified",
+    "base_risk": "High",
+    "severity_score": 85,
+    "common_abuse": "Privilege escalation via group modifications.",
+    "attack_tactics": ["Privilege Escalation"],
+    "soc_notes": "Important in AD environments.",
+    "recommendation": "Inspect group changes."
+  },
+
+  "4756": {
+    "title": "User Added to Security-Enabled Universal Group",
+    "base_risk": "High",
+    "severity_score": 90,
+    "common_abuse": "Privilege escalation in domain environments.",
+    "attack_tactics": ["Privilege Escalation"],
+    "soc_notes": "Dangerous for domain privileges.",
+    "recommendation": "Audit group membership."
+  },
+
+  "4768": {
+    "title": "Kerberos TGT Requested",
+    "base_risk": "Low",
+    "severity_score": 30,
+    "common_abuse": "Used during authentication.",
+    "attack_tactics": ["Initial Access"],
+    "soc_notes": "Large volumes may indicate scanning.",
+    "recommendation": "Analyze abnormal patterns."
+  },
+
+  "4769": {
+    "title": "Kerberos Service Ticket Requested",
+    "base_risk": "High",
+    "severity_score": 80,
+    "common_abuse": "Kerberoasting attacks.",
+    "attack_tactics": ["Credential Access"],
+    "soc_notes": "Important for detecting Kerberos abuse.",
+    "recommendation": "Look for unusual service ticket requests."
+  },
+
+  "4771": {
+    "title": "Kerberos Pre-Auth Failed",
+    "base_risk": "Medium",
+    "severity_score": 65,
+    "common_abuse": "Password guessing attempts.",
+    "attack_tactics": ["Credential Access"],
+    "soc_notes": "Frequent failures are suspicious.",
+    "recommendation": "Check source host."
+  },
+
+  "4776": {
+    "title": "NTLM Authentication Attempt",
+    "base_risk": "Medium",
+    "severity_score": 55,
+    "common_abuse": "Pass-the-hash or NTLM abuse.",
+    "attack_tactics": ["Credential Access"],
+    "soc_notes": "Common during lateral movement.",
+    "recommendation": "Check authentication patterns."
+  },
+
+  "4798": {
+    "title": "User Group Membership Enumeration",
+    "base_risk": "Medium",
+    "severity_score": 50,
+    "common_abuse": "Reconnaissance by attackers.",
+    "attack_tactics": ["Discovery"],
+    "soc_notes": "Often appears before privilege escalation.",
+    "recommendation": "Investigate querying process."
+  },
+
+  "4799": {
+    "title": "Local Group Enumeration",
+    "base_risk": "Medium",
+    "severity_score": 50,
+    "common_abuse": "Attackers enumerating local groups.",
+    "attack_tactics": ["Discovery"],
+    "soc_notes": "Frequent enumeration is suspicious.",
+    "recommendation": "Check the requesting process."
+  },
+
+  "5038": {
+    "title": "Code Integrity Check Failed",
+    "base_risk": "High",
+    "severity_score": 85,
+    "common_abuse": "Unsigned or tampered drivers loaded.",
+    "attack_tactics": ["Defense Evasion"],
+    "soc_notes": "Often related to rootkits.",
+    "recommendation": "Investigate driver path."
+  },
+
+  "5140": {
+    "title": "Network Share Accessed",
+    "base_risk": "Medium",
+    "severity_score": 55,
+    "common_abuse": "Lateral movement through SMB.",
+    "attack_tactics": ["Lateral Movement"],
+    "soc_notes": "Monitor unusual share access.",
+    "recommendation": "Investigate source host."
+  },
+
+  "5145": {
+    "title": "Detailed File Share Access",
+    "base_risk": "Medium",
+    "severity_score": 60,
+    "common_abuse": "Sensitive file enumeration.",
+    "attack_tactics": ["Collection"],
+    "soc_notes": "Useful for data exfiltration detection.",
+    "recommendation": "Review accessed files."
+  },
+
+  "5379": {
+    "title": "Credential Manager Accessed",
+    "base_risk": "High",
+    "severity_score": 85,
+    "common_abuse": "Credential dumping attempts.",
+    "attack_tactics": ["Credential Access"],
+    "soc_notes": "Often linked with credential theft tools.",
+    "recommendation": "Investigate the accessing process."
+  }
+}
