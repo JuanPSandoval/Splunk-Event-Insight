@@ -1,12 +1,10 @@
 let eventsData = {};
 
-
 async function loadEventsData() {
     const url = chrome.runtime.getURL("events.json");
     const response = await fetch(url);
     eventsData = await response.json();
 }
-
 
 function getRiskClass(risk) {
     switch (risk) {
@@ -21,15 +19,10 @@ function getRiskClass(risk) {
     }
 }
 
-
 function attachTooltipToSpan(valueSpan, eventCode) {
-
     let tooltip = null;
-
     valueSpan.addEventListener("mouseenter", function () {
-
         const eventInfo = eventsData[eventCode];
-
         tooltip = document.createElement("div");
         tooltip.classList.add("splunk-tooltip");
 
@@ -91,7 +84,6 @@ function attachTooltipToSpan(valueSpan, eventCode) {
         }
     });
 }
-
 function processEventCodes() {
 
     const containers = document.querySelectorAll("span.t");
@@ -118,8 +110,6 @@ function processEventCodes() {
         }
     });
 }
-
-
 async function init() {
 
     await loadEventsData();
@@ -134,5 +124,4 @@ async function init() {
         subtree: true
     });
 }
-
 init();

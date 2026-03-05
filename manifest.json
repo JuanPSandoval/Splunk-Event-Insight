@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Splunk SOC Context Overlay",
-  "version": "1.0",
+  "version": "0.1",
   "description": "Adds SOC-level contextual intelligence to Windows Event IDs inside Splunk.",
   "permissions": [],
   "content_scripts": [
